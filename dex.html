@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Mall & Apartments - Modern Luxury Living & Retail Spaces</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0052cc',
+                            darkblue: '#003399',
+                            lightblue: '#e6f0ff',
+                            accent: '#0066ff',
+                            gold: '#d4af37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Modern Blue Pattern Background Overlay */
+        .bg-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#0052cc 0.75px, transparent 0.75px), radial-gradient(#0052cc 0.75px, #ffffff 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-opacity: 0.05;
+        }
+        .bg-subtle-grid {
+            background-image: linear-gradient(to right, rgba(0, 82, 204, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 82, 204, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 82, 204, 0.12);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 82, 204, 0.1);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0052cc;
+            border-radius: 4px;
+        }
+        .badge-available-rent {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+        }
+        .badge-available-sale {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+        .badge-booked {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased selection:bg-brand-blue selection:text-white relative bg-subtle-grid">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-darkblue text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-7xl mx-auto rounded-b-lg">
+        <div class="flex items-center space-x-2 mx-auto sm:mx-0">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Now Booking: Floor 2 Shops & High-Rise Apartments (2nd to 10th Floor)</span>
+        </div>
+        <div class="hidden sm:flex items-center space-x-6 text-xs">
+            <a href="tel:+923295250052" class="hover:text-emerald-300 transition-colors"><i class="fas fa-phone-alt mr-1"></i> +92 329 5250052</a>
+            <a href="https://wa.me/923295250052" target="_blank" class="hover:text-emerald-300 transition-colors"><i class="fab fa-whatsapp mr-1 text-emerald-400"></i> Direct Chat</a>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 glass-nav shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- BRAND LOGO -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-darkblue to-brand-blue text-white flex items-center justify-center font-heading font-black text-2xl shadow-lg shadow-brand-blue/30 group-hover:scale-105 transition-transform duration-300">
+                        JS
+                    </div>
+                    <div>
+                        <span class="block font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 leading-none">
+                            JS <span class="text-brand-blue">MALL</span>
+                        </span>
+                        <span class="text-xs uppercase tracking-widest text-slate-500 font-semibold leading-tight block">
+                            & Apartments
+                        </span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex items-center space-x-8 font-medium text-slate-700">
+                    <a href="#hero" class="hover:text-brand-blue transition-colors">Home</a>
+                    <a href="#building-architecture" class="hover:text-brand-blue transition-colors">Floor Directory</a>
+                    <a href="#units-catalog" onclick="setCategoryFilter('all')" class="hover:text-brand-blue transition-colors">All Units</a>
+                    <a href="#units-catalog" onclick="setCategoryFilter('mall')" class="hover:text-brand-blue transition-colors">Retail Shops</a>
+                    <a href="#units-catalog" onclick="setCategoryFilter('apartment')" class="hover:text-brand-blue transition-colors">Luxury Apartments</a>
+                    <a href="#contact" class="hover:text-brand-blue transition-colors">Contact</a>
+                </nav>
+
+                <!-- HEADER ACTION BUTTONS -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="https://wa.me/923295250052?text=Hello%20JS%20Mall%20%26%20Apartments%2C%20I%20would%20like%20to%20inquire%20about%20booking%20a%20unit." 
+                       target="_blank" 
+                       class="inline-flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all duration-300 shadow-sm">
+                        <i class="fab fa-whatsapp text-lg mr-2 text-emerald-600"></i>
+                        <span>WhatsApp Inquiry</span>
+                    </a>
+                    <a href="#units-catalog" class="inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-blue to-brand-darkblue hover:from-brand-darkblue hover:to-brand-blue transition-all duration-300 shadow-md shadow-brand-blue/25 hover:shadow-lg hover:-translate-y-0.5">
+                        <i class="fas fa-building mr-2"></i>
+                        <span>Book Unit</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE NAV MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3">
+            <a href="#hero" class="block py-2 text-slate-700 font-medium">Home</a>
+            <a href="#building-architecture" class="block py-2 text-slate-700 font-medium">Floor Directory</a>
+            <a href="#units-catalog" onclick="setCategoryFilter('all')" class="block py-2 text-slate-700 font-medium">All Available Units</a>
+            <a href="#units-catalog" onclick="setCategoryFilter('mall')" class="block py-2 text-slate-700 font-medium">Shops & Retail</a>
+            <a href="#units-catalog" onclick="setCategoryFilter('apartment')" class="block py-2 text-slate-700 font-medium">Luxury Apartments</a>
+            <a href="#contact" class="block py-2 text-slate-700 font-medium">Contact Us</a>
+            <div class="pt-3 flex flex-col space-y-2">
+                <a href="https://wa.me/923295250052?text=Hello%20JS%20Mall%20%26%20Apartments%2C%20I%20would%20like%20to%20inquire%20about%20booking%20a%20unit." target="_blank" class="w-full text-center py-2.5 rounded-xl text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200">
+                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp Inquiry
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+        <!-- Background accents -->
+        <div class="absolute top-0 right-0 -z-10 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -z-10 w-96 h-96 bg-brand-darkblue/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-lightblue border border-brand-blue/20 text-brand-blue text-xs sm:text-sm font-semibold tracking-wide">
+                        <i class="fas fa-city mr-2"></i> Premier Mixed-Use Landmark Architecture
+                    </div>
+                    
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+                        Experience Luxury Retail & <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-darkblue">High-Rise Living</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Welcome to <strong class="text-slate-900">JS Mall & Apartments</strong>. Featuring 2 underground levels (including spacious underground parking), 3 full floors of commercial retail spaces, and luxury residences spanning from 2nd up to 10th Floor.
+                    </p>
+
+                    <!-- Key Metrics Banner -->
+                    <div class="grid grid-cols-3 gap-4 pt-2 border-y border-slate-200/80 py-4 max-w-xl mx-auto lg:mx-0">
+                        <div>
+                            <span class="block font-heading font-black text-2xl lg:text-3xl text-brand-blue">25</span>
+                            <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Total Units</span>
+                        </div>
+                        <div class="border-x border-slate-200 px-2">
+                            <span class="block font-heading font-black text-2xl lg:text-3xl text-emerald-600">12</span>
+                            <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Available Now</span>
+                        </div>
+                        <div>
+                            <span class="block font-heading font-black text-2xl lg:text-3xl text-slate-700">10</span>
+                            <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Storeys High</span>
+                        </div>
+                    </div>
+
+                    <!-- Hero Call to Action Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-2">
+                        <a href="#units-catalog" onclick="setCategoryFilter('mall')" class="w-full sm:w-auto px-8 py-4 rounded-xl text-center font-bold text-white bg-gradient-to-r from-brand-blue to-brand-darkblue hover:shadow-xl hover:shadow-brand-blue/30 hover:-translate-y-0.5 transition-all duration-300">
+                            <i class="fas fa-store mr-2"></i> Explore Shops (Rent/Sale)
+                        </a>
+                        <a href="#units-catalog" onclick="setCategoryFilter('apartment')" class="w-full sm:w-auto px-8 py-4 rounded-xl text-center font-bold text-slate-800 bg-white border border-slate-300 hover:border-brand-blue hover:text-brand-blue hover:shadow-md transition-all duration-300">
+                            <i class="fas fa-home mr-2"></i> View Apartments (2nd - 10th Floor)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Hero Image Grid -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                       <img src="img/abs-mall-overview.webp" alt="" > 
+                             class="w-full h-[460px] object-cover hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                            <span class="bg-brand-blue/90 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md w-max mb-2">Prime Commercial Hub</span>
+                            <h3 class="font-heading font-bold text-xl">Modern Retail & Residential Towers</h3>
+                            <p class="text-xs text-slate-300">Underground Mall + High-Rise Luxury Apartments</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl shadow-xl hidden sm:flex items-center space-x-4 max-w-xs border border-brand-blue/20">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl font-bold shrink-0">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Verified Booking</h4>
+                            <p class="text-xs text-slate-500">Instant WhatsApp Booking Confirmation Available</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILDING ARCHITECTURE & DIRECTORY SECTION -->
+    <section id="building-architecture" class="py-16 bg-gradient-to-b from-slate-50 to-white border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-blue font-bold text-sm tracking-wider uppercase">Interactive Directory</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">JS Mall & Apartments Floor Breakdown</h2>
+                <p class="text-slate-600 mt-3 text-sm sm:text-base">Explore our structured layout, starting from subterranean parking to upper-level penthouse luxury suites.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Vertical Floor Selector Card -->
+                <div class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 space-y-4">
+                    
+                    <!-- 10th to 2nd Floor: Luxury Apartments -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Floors 2nd to 10th</span>
+                                <h3 class="font-heading font-bold text-slate-900 text-lg">Luxury Apartments & Penthouses</h3>
+                                <p class="text-xs text-slate-600">High-rise 1, 2 & 3 Bedroom Residential Units with panoramic views.</p>
+                            </div>
+                        </div>
+                        <button onclick="filterByFloor('apartments')" class="px-4 py-2 rounded-lg bg-brand-blue text-white text-xs font-bold hover:bg-brand-darkblue transition-colors shrink-0">
+                            View 8 Apartments
+                        </button>
+                    </div>
+
+                    <!-- 2nd Floor: Mall Shops -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                2F
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-amber-700">2nd Floor Mall</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">10 Stores Available</span>
+                                </div>
+                                <h3 class="font-heading font-bold text-slate-900 text-lg">Upper Mall Retail Outlets</h3>
+                                <p class="text-xs text-slate-600">Prime retail spots for fashion boutiques, electronics, and specialty stores.</p>
+                            </div>
+                        </div>
+                        <button onclick="filterByFloor('2nd')" class="px-4 py-2 rounded-lg bg-amber-600 text-white text-xs font-bold hover:bg-amber-700 transition-colors shrink-0">
+                            View 2nd Fl. Stores
+                        </button>
+                    </div>
+
+                    <!-- Ground & 1st Floor: Main Retail Mall -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-sky-50/70 border border-sky-200/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                1F
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Ground & 1st Floor</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">7 Stores Available</span>
+                                </div>
+                                <h3 class="font-heading font-bold text-slate-900 text-lg">Main Galleria & Brand Outlets</h3>
+                                <p class="text-xs text-slate-600">High foot-fall main entrance levels for premier national & international brands.</p>
+                            </div>
+                        </div>
+                        <button onclick="filterByFloor('1st')" class="px-4 py-2 rounded-lg bg-sky-600 text-white text-xs font-bold hover:bg-sky-700 transition-colors shrink-0">
+                            View 1st Fl. Stores
+                        </button>
+                    </div>
+
+                    <!-- Basement -1: Underground Mall -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                B1
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-700">Basement -1</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">5-7 Stores Available</span>
+                                </div>
+                                <h3 class="font-heading font-bold text-slate-900 text-lg">Lower Mall & Food Court Zone</h3>
+                                <p class="text-xs text-slate-600">Underground climate-controlled shopping arcade with direct parking elevator access.</p>
+                            </div>
+                        </div>
+                        <button onclick="filterByFloor('basement')" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shrink-0">
+                            View B1 Stores
+                        </button>
+                    </div>
+
+                    <!-- Basement -2: Underground Parking -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-slate-100 border border-slate-300/80 flex items-center justify-between opacity-90">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-700 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                B2
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Basement -2 (Subterranean)</span>
+                                <h3 class="font-heading font-bold text-slate-900 text-lg">Secure Underground Parking</h3>
+                                <p class="text-xs text-slate-600">24/7 CCTV surveillance, 200+ vehicle slots, electric charging stations & valet option.</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded font-semibold text-xs bg-slate-200 text-slate-700">
+                            Resident & Guest Parking
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- Right Side Summary Card -->
+                <div class="lg:col-span-4 glass-card p-6 rounded-3xl shadow-lg border border-brand-blue/20">
+                    <h3 class="font-heading font-bold text-xl text-slate-900 mb-4 flex items-center">
+                        <i class="fas fa-chart-pie text-brand-blue mr-2"></i> Inventory Snapshot
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between text-sm mb-1 font-semibold">
+                                <span class="text-slate-600">Total Mall & Apartments</span>
+                                <span class="text-slate-900">25 Units</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-blue h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50/60 p-4 rounded-xl border border-emerald-100 shadow-sm">
+                            <div class="flex justify-between text-sm mb-1 font-semibold">
+                                <span class="text-emerald-800">Available for Rent / Sale</span>
+                                <span class="text-emerald-700 font-extrabold">12 Units</span>
+                            </div>
+                            <div class="w-full bg-emerald-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full rounded-full" style="width: 48%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-rose-50/60 p-4 rounded-xl border border-rose-100 shadow-sm">
+                            <div class="flex justify-between text-sm mb-1 font-semibold">
+                                <span class="text-rose-800">Booked / Sold Out</span>
+                                <span class="text-rose-700 font-extrabold">13 Units</span>
+                            </div>
+                            <div class="w-full bg-rose-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-rose-500 h-full rounded-full" style="width: 52%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm mb-2">Building Amenities</h4>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-bolt text-amber-500 mr-2 w-4"></i> 24/7 Uninterrupted Power Backup</li>
+                            <li class="flex items-center"><i class="fas fa-shield-alt text-brand-blue mr-2 w-4"></i> High Security & Smart Access</li>
+                            <li class="flex items-center"><i class="fas fa-elevator text-indigo-500 mr-2 w-4"></i> High-Speed Passenger & Cargo Lifts</li>
+                            <li class="flex items-center"><i class="fas fa-parking text-emerald-500 mr-2 w-4"></i> Two Level Parking Facility</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE CATALOG / UNITS GRID -->
+    <section id="units-catalog" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="text-brand-blue font-bold text-sm tracking-wider uppercase">Book or Rent Units</span>
+            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Available Shops & Apartments</h2>
+            <p class="text-slate-600 mt-2 text-sm sm:text-base">Filter by floor category, rental status, or sale options to find your ideal investment.</p>
+        </div>
+
+        <!-- CATEGORY TAB SWITCHER -->
+        <div class="flex justify-center mb-8">
+            <div class="bg-slate-100 p-1.5 rounded-2xl flex flex-wrap justify-center gap-1 sm:gap-2 border border-slate-200 max-w-2xl w-full">
+                <button onclick="setCategoryFilter('all')" id="tab-all" class="flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm bg-brand-blue text-white">
+                    <i class="fas fa-th-large mr-1.5"></i> All Units (25)
+                </button>
+                <button onclick="setCategoryFilter('mall')" id="tab-mall" class="flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i class="fas fa-store mr-1.5"></i> JS Mall Shops
+                </button>
+                <button onclick="setCategoryFilter('apartment')" id="tab-apartment" class="flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i class="fas fa-home mr-1.5"></i> JS Apartments
+                </button>
+            </div>
+        </div>
+
+        <!-- SECONDARY FILTER BAR -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Availability Filter -->
+            <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0">Filter Status:</span>
+                <button onclick="setStatusFilter('all')" id="status-all" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-lightblue text-brand-blue border border-brand-blue/30 shrink-0">All Status</button>
+                <button onclick="setStatusFilter('Available')" id="status-available" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">Available Only (12)</button>
+                <button onclick="setStatusFilter('Booked')" id="status-booked" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">Booked / Sold (13)</button>
+            </div>
+
+            <!-- Rent / Sale Filter -->
+            <div class="flex items-center space-x-2 w-full md:w-auto">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0">Purpose:</span>
+                <select id="purpose-select" onchange="filterUnits()" class="w-full md:w-auto bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg p-2 focus:ring-brand-blue focus:border-brand-blue">
+                    <option value="all">All (Rent & Sale)</option>
+                    <option value="Rent">For Rent Only</option>
+                    <option value="Sale">For Sale Only</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- UNITS GRID CONTAINER -->
+        <div id="units-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically Rendered via JavaScript -->
+        </div>
+
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="contact" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-brand-blue/20 px-3 py-1 rounded-md">Direct Developer Inquiries</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Visit JS Mall & Apartments</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Book a site visit or consult with our project lease managers. Whether you want to open a flagship retail store or secure a high-yield apartment investment, our booking desk is active 7 days a week.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-blue/20 border border-brand-blue/40 text-brand-blue flex items-center justify-center shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Site Location</h4>
+                                <p class="text-slate-400 text-xs">Main Boulevard Commercial Zone, JS City Center</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">WhatsApp Direct Contact</h4>
+                                <p class="text-slate-400 text-xs">+92 329 5250052 (Instant Replies)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Booking Office Hours</h4>
+                                <p class="text-slate-400 text-xs">Mon - Sat: 09:00 AM - 08:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Inquiry Form -->
+                <div class="lg:col-span-6 bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-700 shadow-2xl">
+                    <h3 class="font-heading font-bold text-xl text-white mb-2">General Inquiry Request</h3>
+                    <p class="text-slate-400 text-xs mb-6">Fill in details to get our complete price plan PDF and architectural brochure.</p>
+                    
+                    <form onsubmit="handleGeneralInquiry(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name</label>
+                            <input type="text" required id="gen-name" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-blue">
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
+                                <input type="tel" required id="gen-phone" placeholder="+92 300 1234567" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-blue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Interested In</label>
+                                <select id="gen-type" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-blue">
+                                    <option value="Commercial Shop">Commercial Retail Shop</option>
+                                    <option value="Residential Apartment">Residential Apartment</option>
+                                    <option value="Penthouse Suite">Penthouse Suite</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Message</label>
+                            <textarea id="gen-msg" rows="3" placeholder="Tell us your specific requirements..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-blue"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-darkblue font-bold text-white shadow-lg hover:shadow-brand-blue/40 transition-all duration-300">
+                            Submit Inquiry via WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-black text-sm">
+                    JS
+                </div>
+                <span class="text-white font-bold text-sm">JS Mall & Apartments</span>
+            </div>
+            <p>© 2026 JS Mall & Apartments. All rights reserved. Designed for Luxury & Retail Excellence.</p>
+            <div class="flex space-x-4 text-base">
+                <a href="https://wa.me/923295250052" target="_blank" class="hover:text-emerald-400"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="hover:text-brand-blue"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-brand-blue"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/923295250052?text=Hello%20JS%20Mall%20%26%20Apartments%2C%20I%20am%20interested%20in%20booking%20a%20shop%20or%20apartment." 
+       target="_blank" 
+       title="Chat with Us on WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl hover:bg-emerald-600 hover:scale-110 transition-all duration-300 group">
+        <i class="fab fa-whatsapp"></i>
+        <!-- Ping Ring -->
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-ping"></span>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></span>
+    </a>
+
+    <!-- BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-transform duration-300" id="modal-card">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-brand-blue to-brand-darkblue p-6 text-white flex justify-between items-center">
+                <div>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-blue-200">Official Unit Booking</span>
+                    <h3 id="modal-unit-title" class="font-heading font-extrabold text-xl">Unit Booking Form</h3>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
+                
+                <!-- Unit Details Card in Modal -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center text-xs">
+                    <div>
+                        <span class="text-slate-500 block">Selected Property</span>
+                        <strong id="modal-unit-name" class="text-slate-900 font-bold text-sm">Shop B1-01</strong>
+                        <span id="modal-unit-floor" class="text-slate-600 block">Basement -1 Mall</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-slate-500 block">Pricing / Rent</span>
+                        <strong id="modal-unit-price" class="text-brand-blue font-bold text-sm">$1,200 / mo</strong>
+                        <span id="modal-unit-type" class="block font-semibold text-emerald-600">Available</span>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <form id="booking-form" onsubmit="submitBooking(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
+                        <input type="text" id="cust-name" required placeholder="e.g. Ahmed Khan" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Number *</label>
+                            <input type="tel" id="cust-phone" required placeholder="+92 300 0000000" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Booking Type</label>
+                            <select id="cust-intent" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                                <option value="Rent">Lease / Rent</option>
+                                <option value="Buy">Outright Purchase</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Special Notes / Questions</label>
+                        <textarea id="cust-notes" rows="2" placeholder="Any specific requirements or queries?" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-blue focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="pt-2 flex flex-col gap-2">
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-white shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center space-x-2">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            <span>Confirm & Connect via WhatsApp</span>
+                        </button>
+                        <button type="button" onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // -------------------------------------------------------------------
+        // 25 UNITS DATASET (SPECIFICALLY MAPPED TO FLOOR REQUIREMENTS)
+        // 18 Booked/Sold, 12 Left Available overall distribution
+        // Basement -1 (5-7 available), 1st Floor (~7 available), 2nd Floor (10 available), Apartments (2nd - 10th Floor)
+        // -------------------------------------------------------------------
+        const unitsData = [
+            // BASEMENT -1 (MALL / RETAIL)
+            {
+                id: 'B1-101',
+                title: 'Boutique Corner Store',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 120,000 / mo',
+                area: '450 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80',
+                desc: 'Located right next to the lower atrium escalator with heavy footfall.'
+            },
+            {
+                id: 'B1-102',
+                title: 'Café & Bistro Space',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 180,000 / mo',
+                area: '650 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80',
+                desc: 'Equipped with kitchen exhaust vents and food court zone access.'
+            },
+            {
+                id: 'B1-103',
+                title: 'Tech & Gadgets Outlet',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 18,500,000',
+                area: '500 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80',
+                desc: 'Double glass frontage near main elevator lobby.'
+            },
+            {
+                id: 'B1-104',
+                title: 'Supermarket Anchor Shop',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 350,000 / mo',
+                area: '1,200 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=600&q=80',
+                desc: 'Spacious floor plan suitable for grocery or departmental store.'
+            },
+            {
+                id: 'B1-105',
+                title: 'Optics & Watch Boutique',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 14,000,000',
+                area: '380 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80',
+                desc: 'Sleek luxury display counters installed.'
+            },
+
+            // 1ST FLOOR (MAIN MALL GALLERIA)
+            {
+                id: '1F-201',
+                title: 'Luxury Designer Apparel',
+                category: 'mall',
+                floorKey: '1st',
+                floorName: '1st Floor (Main Galleria)',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 210,000 / mo',
+                area: '580 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=600&q=80',
+                desc: 'Prime central hallway placement with high visibility.'
+            },
+            {
+                id: '1F-202',
+                title: 'Jewelry & Gem Emporium',
+                category: 'mall',
+                floorKey: '1st',
+                floorName: '1st Floor (Main Galleria)',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 24,000,000',
+                area: '420 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80',
+                desc: 'Reinforced vault installation & bulletproof glass facade.'
+            },
+            {
+                id: '1F-203',
+                title: 'Footwear & Accessories',
+                category: 'mall',
+                floorKey: '1st',
+                floorName: '1st Floor (Main Galleria)',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 160,000 / mo',
+                area: '490 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80',
+                desc: 'Ready for immediate fit-outs with illuminated shelving.'
+            },
+            {
+                id: '1F-204',
+                title: 'Perfume & Cosmetics Hub',
+                category: 'mall',
+                floorKey: '1st',
+                floorName: '1st Floor (Main Galleria)',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 195,000 / mo',
+                area: '510 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
+                desc: 'Leased to major national brand.'
+            },
+            {
+                id: '1F-205',
+                title: 'Electronics Flagship Store',
+                category: 'mall',
+                floorKey: '1st',
+                floorName: '1st Floor (Main Galleria)',
+                status: 'Booked',
+                purpose: 'Sale',
+                price: 'PKR 28,000,000',
+                area: '750 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=600&q=80',
+                desc: 'Sold to tech retail conglomerate.'
+            },
+
+            // 2ND FLOOR (MALL STORES)
+            {
+                id: '2F-301',
+                title: 'Kids & Toy World',
+                category: 'mall',
+                floorKey: '2nd',
+                floorName: '2nd Floor Mall',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 130,000 / mo',
+                area: '520 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=600&q=80',
+                desc: 'Spacious store front directly facing escalator.'
+            },
+            {
+                id: '2F-302',
+                title: 'Sports & Fitness Gear',
+                category: 'mall',
+                floorKey: '2nd',
+                floorName: '2nd Floor Mall',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 16,500,000',
+                area: '600 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80',
+                desc: 'Ideal for sportswear brands or athletic equipment shop.'
+            },
+            {
+                id: '2F-303',
+                title: 'Bookstore & Stationery',
+                category: 'mall',
+                floorKey: '2nd',
+                floorName: '2nd Floor Mall',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 110,000 / mo',
+                area: '430 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1526243741027-444d633d7342?auto=format&fit=crop&w=600&q=80',
+                desc: 'Quiet corner with ambient warm lighting setup.'
+            },
+            {
+                id: '2F-304',
+                title: 'Home Decor Studio',
+                category: 'mall',
+                floorKey: '2nd',
+                floorName: '2nd Floor Mall',
+                status: 'Booked',
+                purpose: 'Sale',
+                price: 'PKR 19,000,000',
+                area: '640 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80',
+                desc: 'Sold to luxury interior store.'
+            },
+            {
+                id: '2F-305',
+                title: 'Gaming & VR Experience Center',
+                category: 'mall',
+                floorKey: '2nd',
+                floorName: '2nd Floor Mall',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 175,000 / mo',
+                area: '700 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80',
+                desc: 'Leased for digital gaming lounge.'
+            },
+
+            // 2ND TO 10TH FLOOR (LUXURY APARTMENTS)
+            {
+                id: 'APT-301',
+                title: 'Executive 1-Bed Modern Flat',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '3rd Floor Apartment Tower',
+                status: 'Available',
+                purpose: 'Rent',
+                price: 'PKR 95,000 / mo',
+                area: '750 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80',
+                desc: 'Fully finished interior with open kitchen and city balcony.'
+            },
+            {
+                id: 'APT-502',
+                title: 'Royal 2-Bed Luxury Suite',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '5th Floor Apartment Tower',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 22,500,000',
+                area: '1,250 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80',
+                desc: 'Spacious master bedroom with ensuite marble bathroom.'
+            },
+            {
+                id: 'APT-704',
+                title: 'Panorama 3-Bed Corner Suite',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '7th Floor Apartment Tower',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 31,000,000',
+                area: '1,800 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
+                desc: 'Corner apartment offering 270-degree skyline views.'
+            },
+            {
+                id: 'APT-1001',
+                title: 'JS Sky Penthouse Suite',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '10th Floor Sky Level',
+                status: 'Available',
+                purpose: 'Sale',
+                price: 'PKR 55,000,000',
+                area: '3,200 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80',
+                desc: 'Duplex penthouse with private terrace & plunge pool access.'
+            },
+            {
+                id: 'APT-401',
+                title: 'Deluxe 2-Bedroom Residence',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '4th Floor Apartment Tower',
+                status: 'Booked',
+                purpose: 'Sale',
+                price: 'PKR 21,000,000',
+                area: '1,200 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80',
+                desc: 'Booked & sold to private investor.'
+            },
+            {
+                id: 'APT-603',
+                title: 'Urban Studio Apartment',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '6th Floor Apartment Tower',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 75,000 / mo',
+                area: '550 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=600&q=80',
+                desc: 'Currently under long-term corporate lease.'
+            },
+            {
+                id: 'APT-802',
+                title: '3-Bed Family Residence',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '8th Floor Apartment Tower',
+                status: 'Booked',
+                purpose: 'Sale',
+                price: 'PKR 33,000,000',
+                area: '1,850 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+                desc: 'Sold.'
+            },
+            {
+                id: 'APT-901',
+                title: 'Executive Sky Flat',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '9th Floor Sky Level',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 140,000 / mo',
+                area: '1,100 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80',
+                desc: 'Reserved for VIP tenant.'
+            },
+            {
+                id: 'APT-202',
+                title: 'Garden Terrace 1-Bed',
+                category: 'apartment',
+                floorKey: 'apartments',
+                floorName: '2nd Floor Apartment Wing',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 85,000 / mo',
+                area: '680 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80',
+                desc: 'Leased.'
+            },
+            {
+                id: 'B1-106',
+                title: 'B1 Food Court Kiosk',
+                category: 'mall',
+                floorKey: 'basement',
+                floorName: 'Basement -1 (Lower Mall)',
+                status: 'Booked',
+                purpose: 'Rent',
+                price: 'PKR 90,000 / mo',
+                area: '250 Sq Ft',
+                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+                desc: 'Booked for international fast-food branch.'
+            }
+        ];
+
+        // State variables
+        let activeCategory = 'all';
+        let activeStatus = 'all';
+        let selectedUnitForModal = null;
+
+        // Render Units Grid
+        function renderUnits() {
+            const container = document.getElementById('units-grid');
+            const purposeValue = document.getElementById('purpose-select').value;
+            
+            // Filter logic
+            const filtered = unitsData.filter(unit => {
+                const matchCategory = activeCategory === 'all' || unit.category === activeCategory;
+                const matchStatus = activeStatus === 'all' || unit.status === activeStatus;
+                const matchPurpose = purposeValue === 'all' || unit.purpose === purposeValue;
+                return matchCategory && matchStatus && matchPurpose;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-slate-200">
+                        <i class="fas fa-search text-4xl text-slate-300 mb-3"></i>
+                        <h3 class="font-bold text-slate-700 text-lg">No matching units found</h3>
+                        <p class="text-xs text-slate-500 mt-1">Try resetting your filters to see available options.</p>
+                        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-brand-blue text-white rounded-xl text-xs font-bold">Reset Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(unit => {
+                const isAvailable = unit.status === 'Available';
+                const statusBadgeClass = isAvailable 
+                    ? (unit.purpose === 'Rent' ? 'badge-available-rent' : 'badge-available-sale') 
+                    : 'badge-booked';
+                
+                const statusIcon = isAvailable ? 'fa-check-circle' : 'fa-lock';
+                const buttonText = isAvailable ? 'Book / Inquire Now' : 'Unit Booked';
+                const buttonBg = isAvailable 
+                    ? 'bg-gradient-to-r from-brand-blue to-brand-darkblue hover:shadow-lg text-white' 
+                    : 'bg-slate-200 text-slate-500 cursor-not-allowed';
+
+                return `
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex flex-col group">
+                        
+                        <!-- Image Container -->
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${unit.img}" alt="${unit.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            
+                            <!-- Status Badge -->
+                            <div class="absolute top-3 left-3">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold flex items-center shadow-sm ${statusBadgeClass}">
+                                    <i class="fas ${statusIcon} mr-1.5"></i>
+                                    ${unit.status} ${isAvailable ? '(' + unit.purpose + ')' : ''}
+                                </span>
+                            </div>
+
+                            <!-- Unit ID Tag -->
+                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-lg">
+                                ${unit.id}
+                            </div>
+
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent p-3 text-white text-xs font-medium">
+                                <i class="fas fa-layer-group text-brand-blue mr-1"></i> ${unit.floorName}
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="font-heading font-bold text-slate-900 text-base group-hover:text-brand-blue transition-colors">
+                                    ${unit.title}
+                                </h3>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                                    ${unit.desc}
+                                </p>
+                            </div>
+
+                            <!-- Spec Pill Row -->
+                            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                                <div class="bg-slate-50 p-2 rounded-xl">
+                                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Floor Space</span>
+                                    <span class="font-bold text-slate-700"><i class="fas fa-vector-square mr-1 text-slate-400"></i> ${unit.area}</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-xl">
+                                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Price / Rent</span>
+                                    <span class="font-extrabold text-brand-blue">${unit.price}</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Button -->
+                            <button 
+                                onclick="${isAvailable ? `openBookingModal('${unit.id}')` : `notifyBooked('${unit.id}')`}" 
+                                class="w-full py-3 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 transition-all ${buttonBg}">
+                                <i class="${isAvailable ? 'fab fa-whatsapp' : 'fas fa-lock'} text-sm"></i>
+                                <span>${buttonText}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Category Switcher Function
+        function setCategoryFilter(category) {
+            activeCategory = category;
+            
+            // Update Tab styles
+            ['all', 'mall', 'apartment'].forEach(cat => {
+                const btn = document.getElementById(`tab-${cat}`);
+                if (cat === category) {
+                    btn.className = "flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm bg-brand-blue text-white";
+                } else {
+                    btn.className = "flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900";
+                }
+            });
+
+            renderUnits();
+        }
+
+        // Status Filter Switcher
+        function setStatusFilter(status) {
+            activeStatus = status;
+            
+            ['all', 'available', 'booked'].forEach(s => {
+                const btn = document.getElementById(`status-${s}`);
+                if (s.toLowerCase() === status.toLowerCase() || (s === 'all' && status === 'all')) {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-lightblue text-brand-blue border border-brand-blue/30 shrink-0";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0";
+                }
+            });
+
+            renderUnits();
+        }
+
+        // Floor Directory Click Filter Integration
+        function filterByFloor(floorKey) {
+            if (floorKey === 'apartments') {
+                setCategoryFilter('apartment');
+            } else {
+                setCategoryFilter('mall');
+            }
+            
+            // Scroll down smooth
+            document.getElementById('units-catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterUnits() {
+            renderUnits();
+        }
+
+        function resetFilters() {
+            activeCategory = 'all';
+            activeStatus = 'all';
+            document.getElementById('purpose-select').value = 'all';
+            setCategoryFilter('all');
+            setStatusFilter('all');
+        }
+
+        // MODAL FUNCTIONS
+        function openBookingModal(unitId) {
+            const unit = unitsData.find(u => u.id === unitId);
+            if (!unit) return;
+
+            selectedUnitForModal = unit;
+
+            document.getElementById('modal-unit-name').innerText = `${unit.id} - ${unit.title}`;
+            document.getElementById('modal-unit-floor').innerText = unit.floorName;
+            document.getElementById('modal-unit-price').innerText = unit.price;
+            document.getElementById('modal-unit-type').innerText = `For ${unit.purpose} (${unit.area})`;
+
+            const modal = document.getElementById('booking-modal');
+            const card = document.getElementById('modal-card');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('booking-modal');
+            const card = document.getElementById('modal-card');
+            
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Submit Booking & Redirect to WhatsApp
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const intent = document.getElementById('cust-intent').value;
+            const notes = document.getElementById('cust-notes').value;
+
+            const unit = selectedUnitForModal;
+
+            const text = `Hello JS Mall %26 Apartments Management,%0A%0A` +
+                         `I would like to book / inquire about this property:%0A` +
+                         `• Unit ID: ${unit.id}%0A` +
+                         `• Property: ${unit.title}%0A` +
+                         `• Location: ${unit.floorName}%0A` +
+                         `• Listed Price: ${unit.price}%0A` +
+                         `• Preference: ${intent}%0A%0A` +
+                         `Client Information:%0A` +
+                         `• Name: ${encodeURIComponent(name)}%0A` +
+                         `• Contact Phone: ${encodeURIComponent(phone)}%0A` +
+                         `• Notes: ${encodeURIComponent(notes || 'None')}`;
+
+            window.open(`https://wa.me/923295250052?text=${text}`, '_blank');
+            closeModal();
+        }
+
+        // General Inquiry Form
+        function handleGeneralInquiry(e) {
+            e.preventDefault();
+            const name = document.getElementById('gen-name').value;
+            const phone = document.getElementById('gen-phone').value;
+            const type = document.getElementById('gen-type').value;
+            const msg = document.getElementById('gen-msg').value;
+
+            const text = `Hello JS Mall %26 Apartments,%0A%0A` +
+                         `I have a general inquiry:%0A` +
+                         `• Name: ${encodeURIComponent(name)}%0A` +
+                         `• Phone: ${encodeURIComponent(phone)}%0A` +
+                         `• Interest: ${encodeURIComponent(type)}%0A` +
+                         `• Message: ${encodeURIComponent(msg || 'Requesting digital brochure and payment plans.')}`;
+
+            window.open(`https://wa.me/923295250052?text=${text}`, '_blank');
+        }
+
+        function notifyBooked(unitId) {
+            alert(`Unit ${unitId} is currently Booked / Sold. You can contact our team on WhatsApp for join waiting lists or similar upcoming available units!`);
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize on load
+        window.onload = function() {
+            renderUnits();
+        };
+    </script>
+</body>
+</html>
